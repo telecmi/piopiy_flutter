@@ -1,17 +1,31 @@
-# piopiy_example
+# PIOPIY Flutter — Example
 
-A new Flutter project.
+Sign in with TeleCMI agent credentials, dial out, receive calls on the
+native OS call UI. Credentials are saved — later launches sign in
+automatically.
 
-## Getting Started
+## Run — Android
 
-This project is a starting point for a Flutter application.
+```bash
+flutter run
+```
 
-A few resources to get you started if this is your first Flutter project:
+(or `flutter build apk --debug && adb install -r build/app/outputs/flutter-apk/app-debug.apk`)
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+## Run — iPhone (one-time signing first)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. `open ios/Runner.xcworkspace` → Runner target → Signing & Capabilities →
+   choose your team; add the **Push Notifications** capability.
+2. `flutter run`
+
+## Test flow
+
+1. Sign in (grant mic + notification permissions)
+2. Outbound: enter a number → **Call**
+3. Incoming: call the agent — rings on the OS call screen in every app state
+   (for killed-state, swipe the app away first)
+4. The Log pane shows every SDK event (`📲 push token registered`,
+   `📞 incoming`, …)
+
+If incoming calls don't ring, see [doc/troubleshooting.md](../doc/troubleshooting.md)
+— calling-account enablement and OEM battery settings are the usual causes.

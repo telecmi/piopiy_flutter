@@ -97,6 +97,14 @@ The VoIP token is fetched and registered with TeleCMI automatically at
 | `pushRegistered` | device token registered with TeleCMI |
 | `error` | anything that failed (`{code, status}`) |
 
+## Documentation
+
+- [Android setup](doc/android-setup.md) — Firebase checklist, permissions, first-run calling account
+- [iOS setup](doc/ios-setup.md) — Xcode capabilities, APNs key, audio-session rules
+- [Push notifications](doc/push-notifications.md) — credentials, how the flow works, built-in guards
+- [Troubleshooting](doc/troubleshooting.md) — every field-diagnosed symptom and its fix
+- [Changelog](CHANGELOG.md)
+
 ## License
 
 Apache-2.0 © [TeleCMI](https://telecmi.com)
