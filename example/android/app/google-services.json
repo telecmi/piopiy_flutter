@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "160246650223",
+    "project_id": "connle-ai",
+    "storage_bucket": "connle-ai.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:160246650223:android:e8011fd5a39d2a61c4449a",
+        "android_client_info": {
+          "package_name": "com.connleai.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFScTOMQa95-OkzvvqJSk33rYsDXWZML4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,40 @@
+name: piopiy_flutter
+description: >-
+  Official PIOPIY voice SDK for Flutter — high-quality voice calls over the
+  TeleCMI network with native call UI (CallKit / Android Telecom) and
+  push wake-ups, on iOS and Android.
+version: 0.1.0
+homepage: https://github.com/telecmi/piopiy_flutter
+repository: https://github.com/telecmi/piopiy_flutter
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: ">=3.16.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  # Outbound calls: SIP over WSS — Dart port of jsSIP, the engine the
+  # browser/React Native SDKs use for outbound.
+  sip_ua: ^1.1.0
+  # Inbound calls: the gateway way — the push payload carries a LiveKit
+  # {room, token, url}; the SDK joins the room on answer.
+  livekit_client: ^2.13.0
+  # Android push wake-ups (FCM data messages). iOS uses PushKit, handled
+  # natively inside this plugin — the app writes no push code.
+  firebase_messaging: ^17.0.0
+  http: ^1.6.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: com.telecmi.piopiy
+        pluginClass: PiopiyPlugin
+      ios:
+        pluginClass: PiopiyPlugin
