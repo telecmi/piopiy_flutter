@@ -1,0 +1,22 @@
+PODS:
+  - Flutter (1.0.0)
+  - piopiy_flutter (0.1.0):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - piopiy_flutter (from `.symlinks/plugins/piopiy_flutter/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  piopiy_flutter:
+    :path: ".symlinks/plugins/piopiy_flutter/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 71a624a5bc0c04062bf19101d501e466baf2fb47
+  piopiy_flutter: 9366fec48a5a3deb2c650a988d4e3bea9e47451d
+
+PODFILE CHECKSUM: 3ba3a73b1b12adcf321a227a745625fe0888cc82
+
+COCOAPODS: 1.17.0
