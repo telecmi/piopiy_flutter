@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'piopiy_flutter'
-  s.version          = '0.1.0'
+  s.version          = '0.2.0'
   s.summary          = 'Official PIOPIY voice SDK for Flutter — TeleCMI voice calls with CallKit and push wake-ups.'
   s.description      = <<-DESC
 PIOPIY voice SDK for Flutter: voice calls over the TeleCMI network with the
@@ -14,7 +14,7 @@ plugin, and automatic push-token registration.
   s.source_files     = 'Classes/**/*'
   s.dependency 'Flutter'
   s.platform         = :ios, '13.0'
-  s.frameworks       = 'CallKit', 'PushKit', 'AVFoundation'
+  s.frameworks       = 'CallKit', 'PushKit', 'AVFoundation', 'UIKit'
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
   s.swift_version    = '5.0'
 end

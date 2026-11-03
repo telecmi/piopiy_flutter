@@ -32,14 +32,23 @@ never paste them into your app.
 
 ## What you write
 
-**Android** — one line in `main()` (killed-state ring from the background
-isolate):
+**Android** — `await Firebase.initializeApp()` in `main()`. The SDK
+registers its FCM background handler itself (`autoBackgroundPush`); apps
+that own `onBackgroundMessage` set `autoBackgroundPush: false` and call
+`piopiyBackgroundPushHandler(message)` from their handler.
+
+**iOS** — nothing. PushKit and CallKit live inside the plugin and start at
+app launch.
+
+**Your app's own pushes** (not TeleCMI calls) are handed back to you:
 
 ```dart
-FirebaseMessaging.onBackgroundMessage(piopiyBackgroundPushHandler);
+piopiy.onOtherPush((data) => handleMyPush(data)); // also the 'otherPush' event
 ```
 
-**iOS** — nothing. PushKit and CallKit live inside the plugin.
+**Managing the token yourself** — `PiopiyOptions(autoPushToken: false)`, then
+`await piopiy.registerToken(provider: 'fcm', token: t, platform: 'android')`
+(queued until login completes) and `unregisterToken()`.
 
 ## Token lifecycle
 
@@ -58,6 +67,13 @@ FirebaseMessaging.onBackgroundMessage(piopiyBackgroundPushHandler);
   cannot ring a ghost call.
 - **Multi-device dismissal** — the cancel that your own answer triggers on
   sibling devices never kills the call you just answered.
-- **Ring-timeout backstop** (iOS) — if the app is frozen by the OS after the
-  push, a 40 s native timer clears the ring as missed rather than ringing
-  forever.
+- **Ring timeout + missed calls** — a ringing call ends after `ringTime`
+  (default 40 s) and emits `missedCall` (`reason: 'cancelled'` when the caller
+  hung up, `'ring_timeout'` when it rang out). A native timer 5 s later backs
+  it up on both platforms when Dart is frozen or not running; such a call is
+  reported as missed when the app next starts. A deliberate `reject()` is not
+  a missed call.
+
+```dart
+piopiy.on('missedCall', (m) => showLocalNotification('Missed call from ${m['from']}'));
+```
